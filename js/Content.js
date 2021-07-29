@@ -1,7 +1,7 @@
 function getTime(){
     let videos = document.querySelectorAll('#playlist-items');
 
-    let timeMinutes = 0;
+    let timeHours = 0;
     for (let video of videos){
         let timeString = video.querySelector('.td-thumbnail-overlay-time-status-renderer').textContent;
     }
