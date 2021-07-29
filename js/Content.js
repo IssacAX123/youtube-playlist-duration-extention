@@ -6,7 +6,16 @@ function getTime(){
         let timeString = video.querySelector('.td-thumbnail-overlay-time-status-renderer').textContent;
     }
 }
-
+function getHours(time){
+    let timeList = time.split(':').reverse();
+    let timeHours = 0.0;
+    let multiplier = 1/3600;
+    for (let timeValue of timeList){
+        timeHours += timeValue*multiplier;
+        multiplier *= 60;
+    }
+    return timeHours;
+}
 
 
 
