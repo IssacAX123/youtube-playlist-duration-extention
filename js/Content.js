@@ -1,10 +1,17 @@
 function getTime(){
     let videos = document.querySelectorAll('#playlist-items');
-
+    videos[videos.length-1].scrollIntoView(true);
     let timeHours = 0;
+    let timeStringElement;
+    let containerElement;
     for (let video of videos){
-        let timeString = video.querySelector('.td-thumbnail-overlay-time-status-renderer').textContent;
+        timeStringElement = video.querySelector('span#text');
+        if (timeStringElement !== null){
+            console.log(timeStringElement.innerText);
+            timeHours += getHours(timeStringElement.innerText);
+        }
     }
+    return timeHours;
 }
 function getHours(time){
     let timeList = time.split(':').reverse();
@@ -17,9 +24,10 @@ function getHours(time){
     return timeHours;
 }
 
-
-
-let url = window.location.href;
-if (url.indexOf('list=') !== -1){
-
+window.onload = function(){
+    let url = window.location.href;
+    if (url.indexOf('list=') !== -1){
+        let hours = getTime();
+        console.log(hours);
+    }
 }
