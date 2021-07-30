@@ -33,7 +33,50 @@ function convertTimeToObject(hours){
     return timeObject;
 }
 
-function displayResult()
+function displayResult(timesObject){
+    let playlist = document.querySelector("#playlist");
+    let div = createDiv();
+    let select = createSelect();
+    let p = createTextPlaceholder();
+    div.appendChild(p);
+    div.appendChild(select);
+    playlist.appendChild(div);
+}
+
+function createDiv(){
+    let div = document.createElement("div");
+    div.classList.add("style-scope");
+    div.classList.add("timer");
+    div.classList.add("ytd-playlist-panel-renderer");
+    div.style = "width: 100%; background-color: #ECECEC"
+}
+
+function createSelect(){
+    let speeds = ["0.25", "0.50", "0.75", "1.00", "1.25", "1.50", "1.75", "2.00"];
+    let  select = document.createElement("select");
+    select.name = "speed";
+    select.id = "speedChange";
+    select.style = "margin: 1em;"
+    let option;
+    for (const speed of speeds)
+    {
+        option = document.createElement("option");
+        option.value = speed;
+        option.text = speed;
+        if (speed === "1.00"){
+            option.selected = true;
+        }
+        select.appendChild(option);
+    }
+    return select;
+}
+
+function createTextPlaceholder(){
+    let p = document.createElement('p');
+    p.innerHTML = "<span id='daysWrapper'><span id='daysValue'></span> Days</span>, <span id='hoursValue'></span> Hours, <span id='minutesValue'></span> Minutes, <span id='secondsValue'></span> Seconds";
+    return p;
+}
+
 function run(){
     let url = window.location.href;
     if (url.indexOf('list=') !== -1) {
