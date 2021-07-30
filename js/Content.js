@@ -1,33 +1,30 @@
-function getTime(){
-    let videos = document.querySelectorAll('#playlist-items');
-    videos[videos.length-1].scrollIntoView(true);
-    let timeHours = 0;
-    let timeStringElement;
-    let containerElement;
-    for (let video of videos){
-        timeStringElement = video.querySelector('span#text');
-        if (timeStringElement !== null){
-            console.log(timeStringElement.innerText);
-            timeHours += getHours(timeStringElement.innerText);
-        }
-    }
-    return timeHours;
-}
-function getHours(time){
-    let timeList = time.split(':').reverse();
-    let timeHours = 0.0;
-    let multiplier = 1/3600;
-    for (let timeValue of timeList){
-        timeHours += timeValue*multiplier;
-        multiplier *= 60;
-    }
-    return timeHours;
+if (location.href.indexOf('list=') !== -1) {
+    onUrlChange();
 }
 
-window.onload = function(){
-    let url = window.location.href;
-    if (url.indexOf('list=') !== -1){
-        let hours = getTime();
-        console.log(hours);
+
+let lastUrl = location.href;
+let url;
+new MutationObserver(() => {
+    url = location.href;
+    if (url !== lastUrl) {
+        if (url.indexOf('list=') !== -1) {
+            lastUrl = url;
+            window.location.reload(true);
+            onUrlChange();
+        }
     }
+}).observe(document, {subtree: true, childList: true});
+
+
+function onUrlChange(){
+    setTimeout(() => {  run(); }, 5000);
 }
+function run(){
+    var node = document.getElementsByTagName('body')[0];
+    var script= document.createElement('script');
+    script.setAttribute('type', 'text/javascript');
+    script.setAttribute('src', chrome.extension.getURL('js/script.js'))
+    node.appendChild(script);
+}
+
