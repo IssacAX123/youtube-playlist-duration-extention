@@ -1,6 +1,6 @@
 // the code that is inside html to dynamically change speed
 
-let  timesObject = {
+let timesObject = {
     "1.00":{
         "days": 2,
         "hours": 14,
@@ -24,8 +24,9 @@ function selectSpeed(speedElement){
     let timestamp = timesObject[speedElement.value];
     let daysWrapper = document.querySelector('#daysWrapper');
     if (timestamp["days"] === 0){
-        daysWrapper.remove();
+        daysWrapper.style.display = "none";
     }else{
+        daysWrapper.style.display = "inline";
         let days = document.querySelector('#daysValue');
         days.innerText = timestamp["days"].toString();
     }
