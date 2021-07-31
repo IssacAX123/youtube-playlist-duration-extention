@@ -85,7 +85,7 @@ function createSelect(){
     select.setAttribute("onchange", "selectSpeed(this)");
     select.name = "speed";
     select.id = "speedChange";
-    select.style = "margin: 1em; margin-top: 0.5em, margin-bottom:0.5em"
+    select.style = "margin: 1em; margin-top: 0.5em, margin-bottom:0.5em; border: none; background-color: #ECECEC; font-size: 1.2em; font-weight: number; color: #FF0000; text-align: center;"
     let option;
     for (const speed of speeds)
     {
@@ -104,15 +104,16 @@ function createSelect(){
 function createTextPlaceholder(){
     let p = document.createElement('p');
     p.innerHTML = "<span id='daysWrapper'><span id='daysValue'></span> Days,</span> <span id='hoursValue'></span> Hours, <span id='minutesValue'></span> Minutes, <span id='secondsValue'></span> Seconds";
-    p.style = "margin: 1em; margin-top: 0.5em; margin-bottom:0.5em;"
+    p.style = "margin: 1em; margin-top: 0.5em; margin-bottom:0.5em; text-align: center;"
     p.style.display = "inline";
+    p.style.textAlign = "center";
     p.style.fontSize = "1.4em"
     p.style.fontFamily = "Roboto, Arial, sans-serif"
     let spans = p.querySelectorAll("span");
     for(span of spans){
         if (span.id !== "daysWrapper"){
-            span.style.fontSize = "1.45em";
-            span.style.fontWeight = "bold";
+            span.style.fontSize = "1.5em";
+            span.style.fontWeight = "number";
         }
     }
     return p;
@@ -141,9 +142,9 @@ function getTimesObject(){
 }
 function run(){
     let url = window.location.href;
-    if (url.indexOf('list=') !== -1) {
-    timesObject = getTimesObject();
-    displayResult(timesObject);
+    if (url.indexOf('&list=') !== -1) {
+        timesObject = getTimesObject();
+        displayResult(timesObject);
     }
 }
 

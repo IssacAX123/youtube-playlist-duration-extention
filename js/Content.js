@@ -8,7 +8,7 @@ let url;
 new MutationObserver(() => {
     url = location.href;
     if (url !== lastUrl) {
-        if (url.indexOf('list=') !== -1) {
+        if (url.indexOf('&list=') !== -1) {
             lastUrl = url;
             window.location.reload(true);
             onUrlChange();
