@@ -1,8 +1,11 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Youtube Playlist Analyser",
   "version": "1.0.0",
-  "web_accessible_resources": ["js/script.js"],
+  "web_accessible_resources": [{
+        "resources": ["js/script.js"],
+        "matches": ["*://*.youtube.com/*"],
+      }],
   "content_scripts": [
     {"matches": ["*://*.youtube.com/*"],
     "js":  ["js/Content.js"],
