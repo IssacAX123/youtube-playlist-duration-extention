@@ -35,13 +35,14 @@ function convertTimeToObject(hours){
 
 function displayResult(timesObject){
     createScript(timesObject);
-    let playlist = document.querySelector("#playlist");
+    let playlist = document.querySelector("#secondary-inner");
+    let related = playlist.querySelector("#related");
     let div = createDiv();
     let select = createSelect();
     let p = createTextPlaceholder();
     div.appendChild(select);
     div.appendChild(p);
-    playlist.appendChild(div);
+    playlist.insertBefore(div, related);
     let event = new Event('change');
     select.dispatchEvent(event)
 }
@@ -72,10 +73,10 @@ function createScript(timesObject){
 }
 function createDiv(){
     let div = document.createElement("div");
-    div.classList.add("style-scope");
     div.classList.add("timer");
-    div.classList.add("ytd-playlist-panel-renderer");
-    div.style = "width: 100%; background-color: #ECECEC; margin: 0.5em 0 0.5em 0; border: 0.5px #FF0000 solid;"
+    div.classList.add("style-scope");
+    div.classList.add("ytd-watch-flexy");
+    div.style = "width: 100%; background-color: #ECECEC; margin: 0 0 1.5em 0; border: 0.5px #FF0000 solid;"
     return div
 }
 
